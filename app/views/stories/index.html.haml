@@ -4,7 +4,6 @@
   %tr
     %th Title
     %th Body
-    %th Start at
     %th
     %th
     %th
@@ -13,7 +12,6 @@
     %tr
       %td= story.title
       %td= story.body
-      %td= story.start_at
       %td= link_to 'Show', story
       %td= link_to 'Edit', edit_story_path(story)
       %td= link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete
