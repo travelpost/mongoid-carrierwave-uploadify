@@ -1,5 +1,7 @@
 MongoidCarrierwaveUploadify::Application.routes.draw do
-  resources :stories
+  resources :stories do
+    resources :photos
+  end
   root :to => 'stories#index'
 
   # The priority is based upon order of creation:

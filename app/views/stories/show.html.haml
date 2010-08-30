@@ -1,3 +1,5 @@
+%h1 Story
+
 %p
   %b Title:
   = @story.title
@@ -5,6 +7,26 @@
   %b Body:
   = @story.body
 
-= link_to 'Edit', edit_story_path(@story)
+%br
+
+%h2 Photos
+
+%table
+  %tr
+    %th Title
+    %th
+    %th
+
+  - @story.photos.each do |photo|
+    %tr
+      %td= photo.title
+      %td= link_to 'show', [@story, photo]
+      %td= link_to 'edit', edit_story_photo_path(@story, photo)
+
+%br
+
+= link_to 'Edit', :edit_story
 \|
-= link_to 'Back', stories_path
+= link_to 'Back', :stories
+|
+= link_to 'Add photo', new_story_photo_path(@story)

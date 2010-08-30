@@ -1,0 +1,7 @@
+%p
+  %b Title:
+  = @photo.title
+
+= link_to 'Edit', edit_story_photo_path(@story, @photo)
+\|
+= link_to 'Back', @story
