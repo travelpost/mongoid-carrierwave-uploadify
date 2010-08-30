@@ -22,5 +22,13 @@ MongoidCarrierwaveUploadify::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+
+  # Generators
+  config.generators do |g|
+    g.orm                 :mongoid
+    g.template_engine     :haml
+    g.test_framework      :rspec, :fixture => false
+    g.fixture_replacement :fabrication
+  end
 end
 
