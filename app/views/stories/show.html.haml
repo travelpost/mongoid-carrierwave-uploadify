@@ -13,12 +13,14 @@
 
 %table
   %tr
+    %th Image
     %th Title
     %th
     %th
 
   - @story.photos.each do |photo|
     %tr
+      %td= link_to(image_tag(photo.image.thumb.url), [@story, photo]) if photo.image.thumb.url
       %td= photo.title
       %td= link_to 'show', [@story, photo]
       %td= link_to 'edit', edit_story_photo_path(@story, photo)

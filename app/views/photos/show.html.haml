@@ -2,6 +2,10 @@
   %b Title:
   = @photo.title
 
+%p
+  = image_tag @photo.image.url if @photo.image.url
+
+%br
 = link_to 'Edit', edit_story_photo_path(@story, @photo)
 \|
 = link_to 'Back', @story
