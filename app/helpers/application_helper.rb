@@ -1,40 +1,50 @@
 module ApplicationHelper
   def photo_uploadify
+    # Putting the uploadify trigger script in the helper gives us
+    # full access to the view and native rails objects without having
+    # to set javascript variables.
+    #
+    # Uploadify is only a queue manager to hand carrierwave the files
+    # one at a time. Carrierwave handles capturing, resizing and saving
+    # all uploads. All limits set here (file types, size limit) are to
+    # help the user pick the right files. Carrierwave is responsible
+    # for enforcing the limits (white list file name, setting maximum file sizes)
+    #
+    # ScriptData:
+    #   Sets the http headers to accept javascript plus adds
+    #   the session key and authenticity token for XSS protection.
+    #   The "FlashSessionCookieMiddleware" rack module deconstructs these 
+    #   parameters into something Rails will actually use.
+
     session_key_name = Rails.application.config.session_options[:key]
     %Q{
-      <script type='text/javascript'>
-        $(document).ready(function() {
-          $('#photo_upload').uploadify({
-            script          : '#{story_photos_path(@story)}',
-            fileDataName    : 'photo[image]',
-            uploader        : '/uploadify/uploadify.swf',
-            cancelImg       : '/uploadify/cancel.png',
-            fileExt         : '*.png;*.jpg;*.gif',
-            sizeLimit       : #{10.megabytes},
-            multi           : true,
-            auto            : true,
-            scriptData      : {
-              '_http_accept': 'application/javascript',
-              '_method'     : 'post',
-              '#{session_key_name}' : encodeURIComponent('#{u(cookies[session_key_name])}'),
-              'authenticity_token'  : encodeURIComponent('#{u(form_authenticity_token)}')
-            },
-            onAllComplete : function() { location = '#{story_path(@story)}'; }
-          });
+
+    <script type='text/javascript'>
+      $(document).ready(function() {
+        $('#photo_upload').uploadify({
+          script          : '#{story_photos_path(@story)}',
+          fileDataName    : 'photo[image]',
+          uploader        : '/uploadify/uploadify.swf',
+          cancelImg       : '/uploadify/cancel.png',
+          fileDesc        : 'Images',
+          fileExt         : '*.png;*.jpg;*.gif',
+          sizeLimit       : #{10.megabytes},
+          queueSizeLimit  : 24,
+          multi           : true,
+          auto            : true,
+          buttonText      : 'ADD IMAGES',
+          scriptData      : {
+            '_http_accept': 'application/javascript',
+            '#{session_key_name}' : encodeURIComponent('#{u(cookies[session_key_name])}'),
+            'authenticity_token'  : encodeURIComponent('#{u(form_authenticity_token)}')
+          },
+          onComplete      : function(a, b, c, response){ eval(response) }
         });
-      </script>
-    }.strip.gsub(/[\n ]+/, ' ').html_safe
+      });
+    </script>
+
+    }.gsub(/[\n ]+/, ' ').strip.html_safe
   end
 end
 
-
-# onComplete: function(event, queueID, fileObj, response, data) {
-#      $('#uploaded_photos').append('<a href='+fileObj.filePath+'>'+fileObj.name+'</a><br>');
-# }
-
-# 'onComplete' : function (event, queueID, fileObj, response, data) {
-#     alert("The selected " + response + " is uploaded.");
-#     $('input[name="homepage_file"]').val(response);
-#     $('#homepage_file_text').val(response);
-#     return true;
-# }
+# onAllComplete : function() { location = '#{story_path(@story)}'; }
