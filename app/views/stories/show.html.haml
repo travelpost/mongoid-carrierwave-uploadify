@@ -17,6 +17,7 @@
     %th Title
     %th
     %th
+    %th
 
   - @story.photos.each do |photo|
     %tr
@@ -24,6 +25,7 @@
       %td= photo.title
       %td= link_to 'show', [@story, photo]
       %td= link_to 'edit', edit_story_photo_path(@story, photo)
+      %td= link_to 'del', [@story, @photo], :confirm => 'Are you sure?', :method => :delete
 
 %br
 
