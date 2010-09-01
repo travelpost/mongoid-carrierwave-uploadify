@@ -32,3 +32,15 @@
 = link_to 'Back', :stories
 |
 = link_to 'Add photo', new_story_photo_path(@story)
+
+%br
+%br
+
+/ This division is replaced with a flash button by Uploadify
+#photo_upload
+
+/ Only load uploadify javascript on pages they are needed
+= javascript_include_tag '/uploadify/swfobject.js', '/uploadify/jquery.uploadify.v2.1.0.min.js'
+
+/ See application_helper.rb for this code
+= photo_uploadify

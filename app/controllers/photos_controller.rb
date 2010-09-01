@@ -17,7 +17,10 @@ class PhotosController < ApplicationController
 
   def create
     if @photo.save
-      redirect_to [@story, @photo], :notice => 'Photo successfully created'
+      respond_to do |format|
+        format.html { redirect_to [@story, @photo], :notice => 'Photo successfully created' }
+        format.js { render :text => 'Photo successfully created'}
+      end
     else
       render :new
     end
