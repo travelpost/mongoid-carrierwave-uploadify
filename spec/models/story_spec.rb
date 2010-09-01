@@ -1,5 +1,7 @@
 require 'spec_helper'
+require 'remarkable/mongoid'
 
 describe Story do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # RemarkableMongoid adds useful macros
+  it { should embed_many(:photos) }
 end
