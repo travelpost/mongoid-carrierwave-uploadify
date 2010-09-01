@@ -1,5 +1,7 @@
 require 'spec_helper'
+require 'remarkable/mongoid'
 
 describe Photo do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # Remarkable/mongoid macro
+  it { should be_embedded_in(:story) }
 end
