@@ -46,5 +46,3 @@ module ApplicationHelper
     }.gsub(/[\n ]+/, ' ').strip.html_safe
   end
 end
-
-# onAllComplete : function() { location = '#{story_path(@story)}'; }

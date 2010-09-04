@@ -2,13 +2,16 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
 
+  # -- RMagick and MiniMagick requires ImageMagick
+  # -- ImageScience requires Freeimage
   # Include RMagick or ImageScience support
   #     include CarrierWave::RMagick
   #     include CarrierWave::ImageScience
   include CarrierWave::MiniMagick
 
+  # -- These options set in config/initializers/carrierwave.rb
   # Choose what kind of storage to use for this uploader
-  storage :file
+  #     storage :file
   #     storage :s3
 
   # Override the directory where uploaded files will be stored
