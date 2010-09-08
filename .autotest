@@ -1,0 +1,11 @@
+# Additions
+# Autotest.add_hook :initialize do |at|
+#   at.add_mapping(%r%^lib/neolithic_library\.rb$%) do |_, m|
+#     at.files_matching %r%^test/unit/neolithic_library_test\.rb$%
+#   end
+# end
+
+# Exceptions
+Autotest.add_hook :initialize do |at|
+  %w{.svn .hg .git .DS_Store ._* vendor tmp log doc}.each {|exception|at.add_exception(exception)}
+end

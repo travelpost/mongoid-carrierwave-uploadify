@@ -11,11 +11,11 @@ class Photo
   # CarrierWave
   mount_uploader :image, ImageUploader
 
-  before_create :save_dimensions
+  # before_create :save_dimensions
 
 private
-  def save_dimensions
-    self.width  = MiniMagick::Image.from_file(image.path)[:width]
-    self.height = MiniMagick::Image.from_file(image.path)[:height]
-  end
+  # def save_dimensions
+  #   self.width  = MiniMagick::Image.from_file(image.path)[:width]
+  #   self.height = MiniMagick::Image.from_file(image.path)[:height]
+  # end
 end
