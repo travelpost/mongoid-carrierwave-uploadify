@@ -45,4 +45,15 @@ module ApplicationHelper
 
     }.gsub(/[\n ]+/, ' ').strip.html_safe
   end
+
+  def photo_sortable
+    %Q{
+      <script type="text/javascript">
+        $(function() {
+          $('#sortable').sortable();
+          $('#sortable').disableSelection();
+        });
+      </script>
+    }.gsub(/[\n ]+/, ' ').strip.html_safe
+  end
 end

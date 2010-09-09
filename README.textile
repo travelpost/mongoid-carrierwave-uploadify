@@ -10,7 +10,8 @@ This is a demonstration application using:
 Other depedencies:
 
 * RSpec 2.0 — Works well with Mongoid
-* JQuery — Prototype replacement, required by Uploadify
+* JQuery 1.4.1 — Prototype replacement, required by Uploadify
+* jQuery-UI 1.8.4 — Used for drag and drop sorting of photos
 * HAML — Much better than writing in ERB
 * RemarkableMongoid — Very useful in testing standard Mongoid associations
 
@@ -41,6 +42,11 @@ h3. Mongoid
 Mongoid is an excellent (and we think the best) ORM for MongoDB. It enables embedded documents as well as ActiveRecord style associations (called references). The documentation is good and is actively developed. It does not interfere with ActiveRecord so projects can use both in parallel.
 
 
+h3. jQuery
+
+The jQuery UJS project for Rails lists 1.4.1 as the recommended version for Rails 3.0. 
+
+
 h3. Amazon S3
 
 App includes configuration to use S3 for production, :file for development, and :file without processing in test mode. See config/initializers/carrierwave.rb for details.
@@ -50,3 +56,4 @@ h3. More
 
 * Stores photo width and height
 * Stores photo orientation
+
