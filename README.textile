@@ -17,7 +17,7 @@ Other depedencies:
 
 h3. Uploadify
 
-http://www.uploadify.com/
+"http://www.uploadify.com/":http://www.uploadify.com/
 
 JQuery plugin that uses SWFObject to easily select and upload multiple files. Sensible defaults, good looking default buttons, excellent callback mechanism.
 
@@ -26,13 +26,13 @@ This project adds rack middleware to correctly pass session data into Rails as w
 
 h3. Carrierwave
 
-http://github.com/jnicklas/carrierwave
+"http://github.com/jnicklas/carrierwave":http://github.com/jnicklas/carrierwave
 
 Uploading mechanism using Rack Middleware to handle accept uploads and "mount" them to the model. Carrierwave is best at isolating all uploading functions from the model it's being attached to. Image is the mount point inside the photo model. The photo model is an embedded document inside the story model.
 
 
 h3. Mongoid
 
-http://mongoid.org/
+"http://mongoid.org/":http://mongoid.org/
 
 Mongoid is an excellent (and we think the best) ORM for MongoDB. It enables embedded documents as well as ActiveRecord style associations (called references). The documentation is good and is actively developed. It does not interfere with ActiveRecord so projects can use both in parallel.
