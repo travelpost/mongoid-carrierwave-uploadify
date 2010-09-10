@@ -19,7 +19,7 @@
   .photos#sortable
     %h2 Photos
 
-    - @story.photos.each do |photo|
+    - @story.photos.forward.each do |photo|
       = render photo
 
   .queue

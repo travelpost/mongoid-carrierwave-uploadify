@@ -15,7 +15,7 @@ describe Photo do
 
   describe ".image" do
     before(:each) do
-      MiniMagick::Image.stub!(:from_file).and_return(400)
+      MiniMagick::Image.stub!(:from_file).and_return(100)
     end
 
     it "should fail when no file is assigned" do
@@ -59,6 +59,21 @@ describe Photo do
                         exactly(2).and_return(:width => 480, :height => 640)
       @photo = @story.photos.create :image_filename => "test.jpg"
       @photo.orientation.should == "portrait"
+    end
+  end
+
+  describe "position" do
+    before(:each) do
+      MiniMagick::Image.stub!(:from_file).and_return(100)
+      @photo1 = @story.photos.create :image_filename => "image1.jpg"
+      @photo2 = @story.photos.create :image_filename => "image2.jpg"
+      @photo3 = @story.photos.create :image_filename => "image3.jpg"
+    end
+
+    it "should set position" do
+      @photo1.position.should == 1
+      @photo2.position.should == 2
+      @photo3.position.should == 3
     end
   end
 end
