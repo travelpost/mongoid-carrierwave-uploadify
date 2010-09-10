@@ -1,6 +1,10 @@
 MongoidCarrierwaveUploadify::Application.routes.draw do
   resources :stories do
-    resources :photos
+    resources :photos do
+      collection do
+        post 'sort'
+      end
+    end
   end
   root :to => 'stories#index'
 

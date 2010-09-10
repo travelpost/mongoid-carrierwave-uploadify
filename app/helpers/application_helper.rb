@@ -49,10 +49,21 @@ module ApplicationHelper
   def photo_sortable
     %Q{
       <script type="text/javascript">
-        $(function() {
-          $('#sortable').sortable();
-          $('#sortable').disableSelection();
-        });
+        $(document).ready(function() {
+          $('#sortable').sortable( {
+            dropOnEmpty: false,
+            cursor: 'crosshair',
+            opacity: 0.75,
+            scroll: true,
+            update: function() {
+              $.ajax( {
+                type: 'post',
+                data: $('#sortable').sortable('serialize') + '&authenticity_token=#{u(form_authenticity_token)}',
+                dataType: 'script',
+                url: '#{sort_story_photos_path(@story)}'})
+              }
+            });
+          });
       </script>
     }.gsub(/[\n ]+/, ' ').strip.html_safe
   end

@@ -56,4 +56,4 @@ h3. More
 
 * Stores photo width and height
 * Stores photo orientation
-
+* Live photo sorting using jQuery sortable

@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   before_filter :find_story
-  before_filter :find_or_build_photo, :except => :index
+  before_filter :find_or_build_photo, :except => [:index, :sort]
 
   def index
     redirect_to @story
@@ -37,6 +37,20 @@ class PhotosController < ApplicationController
   def destroy
     @photo.destroy
     redirect_to @story
+  end
+
+  def sort
+    # params[:photo] is an array of photo IDs in the order
+    # the should be set in the story. Take each ID and it's
+    # index in the array, find the photo with the ID and set
+    # it's position to the index. Run through the whole ID 
+    # array. Mongoid will automatically do an atomic update
+    # of only the photos whose position has changed.
+    params[:photo].each_with_index do |id, idx|
+      @story.photos.find(id).position = idx
+    end
+    @story.save
+    render :nothing => true
   end
 
 private
